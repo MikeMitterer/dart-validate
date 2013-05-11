@@ -1,5 +1,10 @@
 name: validate
-description: A sample web application
+version: 1.0.0
+author: Mike Mitterer  <office@mikemitterer.at>
+description: This class assists in validating method arguments
+homepage: https://github.com/MikeMitterer/validate
 dependencies:
+  
+dev_dependencies:
   browser: any
-  unittest: any    
+  unittest: any      

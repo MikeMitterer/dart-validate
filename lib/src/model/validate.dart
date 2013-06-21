@@ -96,7 +96,7 @@ abstract class Validate {
 
     /**
      * <p>Validate that the specified argument is neither {@code null}
-     * nor a length of zero (no elements); otherwise throwing an exception
+     * nor is empty (object must have isEmpty implemented); otherwise throwing an exception
      * with the specified message.
      *
      * <pre>Validate.notEmpty(myArray, "The array must not be empty");</pre>
@@ -109,9 +109,15 @@ abstract class Validate {
      */
     static notEmpty(var value, [String message = _DEFAULT_NOT_EMPTY_MESSAGE]) {
         Validate.notNull(value,message);
+        /*
         if ((value is List || value is Map || value is String) && value.length == 0) {
             throw new ArgumentError(message);
         }
+        */
+        if (value.isEmpty) {
+            throw new ArgumentError(message);
+        }
+        
         return value;
     }
 

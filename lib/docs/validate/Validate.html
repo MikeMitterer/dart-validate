@@ -126,7 +126,7 @@ abstract class Validate {
 
    /**
     * &lt;p&gt;Validate that the specified argument is neither {@code null}
-    * nor a length of zero (no elements); otherwise throwing an exception
+    * nor is empty (object must have isEmpty implemented); otherwise throwing an exception
     * with the specified message.
     *
     * &lt;pre&gt;Validate.notEmpty(myArray, "The array must not be empty");&lt;/pre&gt;
@@ -139,9 +139,15 @@ abstract class Validate {
     */
    static notEmpty(var value, [String message = _DEFAULT_NOT_EMPTY_MESSAGE]) {
        Validate.notNull(value,message);
+       /*
        if ((value is List || value is Map || value is String) &amp;&amp; value.length == 0) {
            throw new ArgumentError(message);
        }
+       */
+       if (value.isEmpty) {
+           throw new ArgumentError(message);
+       }
+       
        return value;
    }
 
@@ -469,7 +475,7 @@ dynamic <strong>notEmpty</strong>(value, [<a href="http://api.dartlang.org/dart_
               title="Permalink to Validate.notEmpty">#</a></h4>
 <div class="doc">
 <p>Validate that the specified argument is neither {@code null}
-nor a length of zero (no elements); otherwise throwing an exception
+nor is empty (object must have isEmpty implemented); otherwise throwing an exception
 with the specified message.<pre>Validate.notEmpty(myArray, "The array must not be empty");</pre>
 <p>@param value  the value to check, validated not null by this method
 @param message  the exception message if invalid, not null
@@ -479,9 +485,15 @@ with the specified message.<pre>Validate.notEmpty(myArray, "The array must not b
 <pre class="source">
 static notEmpty(var value, [String message = _DEFAULT_NOT_EMPTY_MESSAGE]) {
    Validate.notNull(value,message);
+   /*
    if ((value is List || value is Map || value is String) &amp;&amp; value.length == 0) {
        throw new ArgumentError(message);
    }
+   */
+   if (value.isEmpty) {
+       throw new ArgumentError(message);
+   }
+   
    return value;
 }
 </pre>
@@ -700,7 +712,7 @@ static void exclusiveBetween(Comparable start, Comparable end, Comparable value,
         <div class="clear"></div>
         </div>
         <div class="footer">
-          <div>This page was generated at 2013-05-11 21:14:55.865</div>
+          <div>This page was generated at 2013-06-21 09:43:19.908</div>
         </div>
         <script async src="../client-static.js"></script>
         </body></html>

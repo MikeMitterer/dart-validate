@@ -1,5 +1,5 @@
 name: validate
-version: 1.0.2
+version: 1.0.3
 author: Mike Mitterer  <office@mikemitterer.at>
 description: This class assists in validating method arguments
 homepage: https://github.com/MikeMitterer/validate

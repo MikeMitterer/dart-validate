@@ -24,7 +24,9 @@ testValidate() {
       map["Hallo"]="Test";
       expect(() => (Validate.notEmpty(map)),returnsNormally);
       
-      expect(() => (Validate.notEmpty(0)),returnsNormally);
+      // int has not Method "isEmpty"
+      expect(() => (Validate.notEmpty(0)),throwsA(new isInstanceOf<NoSuchMethodError>()));
+      
       expect(() => (Validate.notEmpty("")),throwsA(new isInstanceOf<ArgumentError>()));
       }); 
     

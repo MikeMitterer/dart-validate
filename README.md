@@ -10,6 +10,9 @@ to validate parameters everywhere, as it makes code maintenance and refactoring 
 
 For further documentation please refere to the Unit-Tests.
 
+###History###
+* 1.0.4 - Replaced NullPointerException with ArgumentError - makes more sense
+
 ###License###
 
     Copyright 2012 Michael Mitterer, IT-Consulting and Development Limited,

@@ -85,7 +85,7 @@ abstract class Validate {
      */
     static notNull(var object,[String message = _DEFAULT_IS_NULL_EX_MESSAGE]) {
       if (object == null) {
-        throw new NullPointerError(message);
+        throw new ArgumentError(message);
       }
       return object;      
     }

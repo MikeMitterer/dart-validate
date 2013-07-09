@@ -11,7 +11,7 @@ testValidate() {
 
     test('> notNull', () {
       expect(() => (Validate.notNull("Test")),returnsNormally);
-      expect(() => (Validate.notNull(null)),throwsA(new isInstanceOf<NullPointerError>()));
+      expect(() => (Validate.notNull(null)),throwsA(new isInstanceOf<ArgumentError>()));
       });
     
     test('> notEmpty', () {
@@ -32,7 +32,7 @@ testValidate() {
     
     test('> notBlank', () {
       expect(() => (Validate.notBlank("Test")),returnsNormally);
-      expect(() => (Validate.notBlank(null)),throwsA(new isInstanceOf<NullPointerError>()));
+      expect(() => (Validate.notBlank(null)),throwsA(new isInstanceOf<ArgumentError>()));
       expect(() => (Validate.notBlank("")),throwsA(new isInstanceOf<ArgumentError>()));
       
       // Dart should point out at least a warning!!!!

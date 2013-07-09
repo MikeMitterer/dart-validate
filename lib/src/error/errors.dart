@@ -1,4 +1,5 @@
 part of validate;
+/// Possible errors thrown by Validate
 
 abstract class ErrorMessage extends Error {
   final String message;
@@ -7,8 +8,4 @@ abstract class ErrorMessage extends Error {
 
 class IllegalStateError extends ErrorMessage {
   IllegalStateError(final String message) : super(message);
-}
-
-class NullPointerError extends ErrorMessage {
-  NullPointerError(final String message) : super(message);
 }

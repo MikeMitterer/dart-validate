@@ -38,7 +38,7 @@ abstract class Validate {
     static const String _DEFAULT_MATCHES_PATTERN_EX = "The string does not match the pattern";
     static const String _DEFAULT_INCLUSIVE_BETWEEN_EX_MESSAGE = "The value is not in the specified inclusive range";
     static const String _DEFAULT_EXCLUSIVE_BETWEEN_EX_MESSAGE = "The value is not in the specified exclusive range";
-
+    static const String _DEFAULT_JSON_MESSAGE = "The value is neither a num, String, bool, Null, List or Map";
     /*
     static const String _DEFAULT_NO_NULL_ELEMENTS_COLLECTION_EX_MESSAGE = "The validated collection contains null element at specified index";
     static const String _DEFAULT_VALID_INDEX_CHAR_SEQUENCE_EX_MESSAGE = "The validated character sequence index is invalid";
@@ -313,6 +313,26 @@ abstract class Validate {
         }
     }
 
+    // json Object
+    /**
+     * <p>Validate that the specified value ist either a num, String, bool, Map or List.
+     * If the first check fails isJson checks if the value has a toJson() function - if so, the value is also valid
+     * </p>
+     * 
+     * @param value  the value to validate, not null
+     * @throws ArgumentError if the value falls out of the boundaries
+     */    
+    static void isJson(final dynamic value,[String message = _DEFAULT_JSON_MESSAGE]) {
+      Validate.notNull(value, message);
+      if(!((value is num) || (value is String) || (value is bool) || (value is List) || (value is Map))) {
+        try {
+          value.toJson();
+        } on NoSuchMethodError catch (e) {
+          throw new ArgumentError(message);
+        }
+      }
+    }
+    
     // isInstanceOf
     //---------------------------------------------------------------------------------
 

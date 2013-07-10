@@ -1,5 +1,13 @@
 part of test;
 
+class _NotAJsonObject {
+  final String message = "I am not the right one";  
+}
+
+class _IAmAJsonObject extends _NotAJsonObject {
+  dynamic toJson() { return [ message ]; } 
+}
+
 testValidate() {
 
   group('Validator-Test', () {
@@ -94,6 +102,15 @@ testValidate() {
       expect(() => (Validate.exclusiveBetween(0,2,2)),throwsA(new isInstanceOf<ArgumentError>()));
       expect(() => (Validate.exclusiveBetween(0,2,1)),returnsNormally);
       });   
+    
+    test('> json', () {
+      expect(() => (Validate.isJson("Test")),returnsNormally);
+      expect(() => (Validate.isJson(1)),returnsNormally);
+      expect(() => (Validate.isJson(["3","4"])),returnsNormally);
+
+      expect(() => (Validate.isJson(new _NotAJsonObject())),throwsA(new isInstanceOf<ArgumentError>()));
+      expect(() => (Validate.isJson(new _IAmAJsonObject())),returnsNormally);
+      });      
     
 //    test('> isInstanceOf', () {
 //      expect(() => (Validate.isInstanceOf(String,"Hallo")),returnsNormally);

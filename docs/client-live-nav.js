@@ -3487,9 +3487,7 @@ bu:function(a){return"Unsupported operation: "+this.G1}},rM:{"":"a;G1",
 bu:function(a){var z=this.G1
 return z!=null?"UnimplementedError: "+$.d(z):"UnimplementedError"}},lj:{"":"a;G1",
 bu:function(a){return"Bad state: "+this.G1}},UV:{"":"a;Sd",
-bu:function(a){var z=this.Sd
-if(z==null)return"Concurrent modification during iteration."
-return"Concurrent modification during iteration: "+$.hl(z)+"."}},VS:{"":"a;",
+bu:function(a){return"Concurrent modification during iteration: "+$.hl(this.Sd)+"."}},VS:{"":"a;",
 bu:function(a){return"Stack Overflow"}},t7:{"":"a;Wo",
 bu:function(a){return"Reading static variable '"+this.Wo+"' during its initialization"}},HG:{"":"a;G1",
 bu:function(a){var z=this.G1

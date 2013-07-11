@@ -38,4 +38,4 @@ For further documentation please refere to the Unit-Tests.
     
 If this plugin is helpful for you - please [(Circle)](http://gplus.mikemitterer.at/) me.
 
-[1] http://htmlpreview.github.io/?https://raw.github.com/MikeMitterer/dart-validate/master/docs/index.html
+[1]: http://htmlpreview.github.io/?https://raw.github.com/MikeMitterer/dart-validate/master/docs/index.html

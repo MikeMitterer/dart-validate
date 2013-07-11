@@ -110,7 +110,19 @@ testValidate() {
 
       expect(() => (Validate.isJson(new _NotAJsonObject())),throwsA(new isInstanceOf<ArgumentError>()));
       expect(() => (Validate.isJson(new _IAmAJsonObject())),returnsNormally);
-      });      
+      });   
+    
+    test('> key in Map', () {
+      final Map<String,dynamic> map1ToTest = new Map<String,dynamic>();
+      map1ToTest.putIfAbsent("name", () => "Mike");
+      map1ToTest.putIfAbsent("number", () => 42);
+      
+      expect(() => (Validate.isKeyInMap("name",map1ToTest)),returnsNormally);
+      expect(() => (Validate.isKeyInMap("number",map1ToTest)),returnsNormally);
+
+      //expect(() => (Validate.isKeyInMap("email",map1ToTest)),returnsNormally);      
+      expect(() => (Validate.isKeyInMap("email",map1ToTest)),throwsA(new isInstanceOf<ArgumentError>()));
+      });     
     
 //    test('> isInstanceOf', () {
 //      expect(() => (Validate.isInstanceOf(String,"Hallo")),returnsNormally);

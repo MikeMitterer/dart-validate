@@ -63,6 +63,8 @@ abstract class Validate {
    static const String _DEFAULT_INCLUSIVE_BETWEEN_EX_MESSAGE = "The value is not in the specified inclusive range";
    static const String _DEFAULT_EXCLUSIVE_BETWEEN_EX_MESSAGE = "The value is not in the specified exclusive range";
    static const String _DEFAULT_JSON_MESSAGE = "The value is neither a num, String, bool, Null, List or Map";
+   static const String _DEFAULT_KEY_IN_MAP_MESSAGE = "The key '%key%' is invalid for this Map";
+   
    /*
    static const String _DEFAULT_NO_NULL_ELEMENTS_COLLECTION_EX_MESSAGE = "The validated collection contains null element at specified index";
    static const String _DEFAULT_VALID_INDEX_CHAR_SEQUENCE_EX_MESSAGE = "The validated character sequence index is invalid";
@@ -338,6 +340,7 @@ abstract class Validate {
    }
 
    // json Object
+   //---------------------------------------------------------------------------------
    /**
     * &lt;p&gt;Validate that the specified value ist either a num, String, bool, Map or List.
     * If the first check fails isJson checks if the value has a toJson() function - if so, the value is also valid
@@ -356,6 +359,22 @@ abstract class Validate {
        }
      }
    }
+   
+   // Key in Map
+   //---------------------------------------------------------------------------------
+   /**
+    * &lt;p&gt;Validate that the specified key is in the map and if so the value is not null. 
+    * If %key% is found in [message] it will be replaced with [key].toString() &lt;/p&gt;
+    * 
+    * [key] the key to validate, [map] to validate, must not be null
+    * Throws [ArgumentError] if the key is not found in the map or if the value found is null.
+    */    
+   static void isKeyInMap(final dynamic key,final Map map,[String message = _DEFAULT_KEY_IN_MAP_MESSAGE]) {
+     Validate.notNull(map, message);
+     if(!map.containsKey(key) || map[key] == null) {
+       throw new ArgumentError(message.replaceFirst("%key%", key.toString()));
+     }
+   }    
    
    // isInstanceOf
    //---------------------------------------------------------------------------------
@@ -745,12 +764,33 @@ static void isJson(final dynamic value,[String message = _DEFAULT_JSON_MESSAGE])
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="isKeyInMap">
+<button class="show-code">Code</button>
+void <strong>isKeyInMap</strong>(key, Map map, [String message = _DEFAULT_KEY_IN_MAP_MESSAGE]) <a class="anchor-link" href="#isKeyInMap"
+              title="Permalink to Validate.isKeyInMap">#</a></h4>
+<div class="doc">
+<p>Validate that the specified key is in the map and if so the value is not null. 
+If %key% is found in [message] it will be replaced with [key].toString() </p>
+<p>
+<span class="param">key</span> the key to validate, 
+<span class="param">map</span> to validate, must not be null
+Throws <code>ArgumentError</code> if the key is not found in the map or if the value found is null.</p>
+<pre class="source">
+static void isKeyInMap(final dynamic key,final Map map,[String message = _DEFAULT_KEY_IN_MAP_MESSAGE]) {
+ Validate.notNull(map, message);
+ if(!map.containsKey(key) || map[key] == null) {
+   throw new ArgumentError(message.replaceFirst("%key%", key.toString()));
+ }
+}
+</pre>
+</div>
+</div>
 </div>
         </div>
         <div class="clear"></div>
         </div>
         <div class="footer">
-          <div>This page was generated at 2013-07-10 12:54:56.478</div>
+          <div>This page was generated at 2013-07-11 10:56:48.738</div>
         </div>
         <script async src="../client-live-nav.js"></script>
         </body></html>

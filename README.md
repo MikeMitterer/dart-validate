@@ -11,12 +11,14 @@ to validate parameters everywhere, as it makes code maintenance and refactoring 
 For further documentation please refere to the Unit-Tests.
 
 ###History###
+* 1.2.0 - isKeyInMap check added
+* 1.1.0 - isJson check added
 * 1.0.5 - Changed GitHub-Repository to dart-validate
 * 1.0.4 - Replaced NullPointerException with ArgumentError - makes more sense
 
 ###License###
 
-    Copyright 2012 Michael Mitterer, IT-Consulting and Development Limited,
+    Copyright 2013 Michael Mitterer, IT-Consulting and Development Limited,
     Austrian Branch
 
     Licensed under the Apache License, Version 2.0 (the "License");

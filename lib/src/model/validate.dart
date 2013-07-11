@@ -39,6 +39,8 @@ abstract class Validate {
     static const String _DEFAULT_INCLUSIVE_BETWEEN_EX_MESSAGE = "The value is not in the specified inclusive range";
     static const String _DEFAULT_EXCLUSIVE_BETWEEN_EX_MESSAGE = "The value is not in the specified exclusive range";
     static const String _DEFAULT_JSON_MESSAGE = "The value is neither a num, String, bool, Null, List or Map";
+    static const String _DEFAULT_KEY_IN_MAP_MESSAGE = "The key '%key%' is invalid for this Map";
+    
     /*
     static const String _DEFAULT_NO_NULL_ELEMENTS_COLLECTION_EX_MESSAGE = "The validated collection contains null element at specified index";
     static const String _DEFAULT_VALID_INDEX_CHAR_SEQUENCE_EX_MESSAGE = "The validated character sequence index is invalid";
@@ -314,6 +316,7 @@ abstract class Validate {
     }
 
     // json Object
+    //---------------------------------------------------------------------------------
     /**
      * <p>Validate that the specified value ist either a num, String, bool, Map or List.
      * If the first check fails isJson checks if the value has a toJson() function - if so, the value is also valid
@@ -332,6 +335,22 @@ abstract class Validate {
         }
       }
     }
+    
+    // Key in Map
+    //---------------------------------------------------------------------------------
+    /**
+     * <p>Validate that the specified key is in the map and if so the value is not null. 
+     * If %key% is found in [message] it will be replaced with [key].toString() </p>
+     * 
+     * [key] the key to validate, [map] to validate, must not be null
+     * Throws [ArgumentError] if the key is not found in the map or if the value found is null.
+     */    
+    static void isKeyInMap(final dynamic key,final Map map,[String message = _DEFAULT_KEY_IN_MAP_MESSAGE]) {
+      Validate.notNull(map, message);
+      if(!map.containsKey(key) || map[key] == null) {
+        throw new ArgumentError(message.replaceFirst("%key%", key.toString()));
+      }
+    }    
     
     // isInstanceOf
     //---------------------------------------------------------------------------------

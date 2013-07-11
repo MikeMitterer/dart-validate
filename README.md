@@ -10,6 +10,9 @@ to validate parameters everywhere, as it makes code maintenance and refactoring 
 
 For further documentation please refere to the Unit-Tests.
 
+###API###
+[Dart Documentation][1] on GitHub
+
 ###History###
 * 1.2.0 - isKeyInMap check added
 * 1.1.0 - isJson check added
@@ -34,3 +37,5 @@ For further documentation please refere to the Unit-Tests.
     governing permissions and limitations under the License.
     
 If this plugin is helpful for you - please [(Circle)](http://gplus.mikemitterer.at/) me.
+
+[1] http://htmlpreview.github.io/?https://raw.github.com/MikeMitterer/dart-validate/master/docs/index.html

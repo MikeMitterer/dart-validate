@@ -11,7 +11,7 @@ to validate parameters everywhere, as it makes code maintenance and refactoring 
 For further documentation please refere to the Unit-Tests.
 
 ###API###
-[Dart Documentation][1] on GitHub
+<a href="http://htmlpreview.github.io/?https://raw.github.com/MikeMitterer/dart-validate/master/docs/index.html" target="_blank">Dart Documentation</a> on GitHub
 
 ###History###
 * 1.2.0 - isKeyInMap check added

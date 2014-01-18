@@ -12,7 +12,7 @@ testValidate() {
 
   group('Validator-Test', () {
 
-    test('> isTrue', () {
+    test('isTrue', () {
       expect(() => (Validate.isTrue(true)),returnsNormally);
       expect(() => (Validate.isTrue(false)),throwsA(new isInstanceOf<ArgumentError>()));
       });

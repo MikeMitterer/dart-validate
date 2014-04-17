@@ -268,7 +268,7 @@ abstract class Validate {
       matchesPattern(input,new RegExp(PATTERN_HEX),message);  
     }
 
-    static void isHex(String input,[String message = DEFAULT_MATCHES_PATTERN_EX]) {
+    static void isUUID(String input,[String message = DEFAULT_MATCHES_PATTERN_EX]) {
         matchesPattern(input,new RegExp(PATTERN_UUID),message);
     }
 

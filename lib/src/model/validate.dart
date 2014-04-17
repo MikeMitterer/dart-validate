@@ -19,6 +19,7 @@ abstract class Validate {
     static const String PATTERN_PW            = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%]).{8,15})";  // http://www.mkyong.com/regular-expressions/how-to-validate-password-with-regular-expression/
     static const String PATTERN_ALPHANUMERIC  = "^[a-zA-Z0-9öäüÖÄÜß]+\$";
     static const String PATTERN_HEX           = "^(0x[a-fA-F0-9]+)|([a-fA-F0-9])+\$";
+    static const String PATTERN_UUID         = "^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}\$";
 
     static const String DEFAULT_IS_TRUE_EX_MESSAGE = "The validated expression is false";
     static const String DEFAULT_IS_NULL_EX_MESSAGE = "The validated object is null";
@@ -265,8 +266,12 @@ abstract class Validate {
     
     static void isHex(String input,[String message = DEFAULT_MATCHES_PATTERN_EX]) {
       matchesPattern(input,new RegExp(PATTERN_HEX),message);  
-    }  
-    
+    }
+
+    static void isHex(String input,[String message = DEFAULT_MATCHES_PATTERN_EX]) {
+        matchesPattern(input,new RegExp(PATTERN_UUID),message);
+    }
+
     // inclusiveBetween
     //---------------------------------------------------------------------------------
 

@@ -32,7 +32,7 @@ abstract class Validate {
     static const String DEFAULT_INCLUSIVE_BETWEEN_EX_MESSAGE = "The value is not in the specified inclusive range";
     static const String DEFAULT_EXCLUSIVE_BETWEEN_EX_MESSAGE = "The value is not in the specified exclusive range";
     static const String DEFAULT_JSON_MESSAGE = "The value is neither a num, String, bool, Null, List or Map";
-    static const String DEFAULT_KEY_IN_MAP_MESSAGE = "The key '%key%' is not available in this Map";
+    static const String DEFAULT_KEY_IN_MAP_MESSAGE = "The key '%key%' is not available for this Map";
     
     /*
     static const String _DEFAULT_NO_NULL_ELEMENTS_COLLECTION_EX_MESSAGE = "The validated collection contains null element at specified index";

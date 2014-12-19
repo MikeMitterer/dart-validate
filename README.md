@@ -10,11 +10,6 @@ to validate parameters everywhere, as it makes code maintenance and refactoring 
 
 For further documentation please refere to the Unit-Tests.
 
-<!---
-###API###
-<a href="http://goo.gl/ut2Ou" target="_blank">Dart Documentation</a> on GitHub
--->
-
 ###History###
 * 1.4.0 - Instance check added
 * 1.3.0 - Validate.isUUID added

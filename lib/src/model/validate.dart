@@ -372,9 +372,14 @@ abstract class Validate {
     //---------------------------------------------------------------------------------
 
     /**
-     * <p>Validate that the argument is an instance of the specified class; otherwise
+     * Validate that the argument is an instance of the specified class; otherwise
      * throwing an exception. This method is useful when validating according to an arbitrary
-     * class</p>
+     * class
+     *
+     * Sample:
+     *    Validate.isInstance(new instanceCheck<String>(),"Test");
+     *    Validate.isInstance(new instanceCheck<String>(),myParam);
+     *    Validate.isInstance(new instanceCheck<List<String>>(strict: false),new List())
      */
 
      static void isInstance(final instanceCheck instanceCheck, var obj,[String message = DEFAULT_IS_INSTANCE_OF_EX_MESSAGE]) {

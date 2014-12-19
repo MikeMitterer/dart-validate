@@ -16,6 +16,7 @@ For further documentation please refere to the Unit-Tests.
 -->
 
 ###History###
+* 1.4.0 - Instance check added
 * 1.3.0 - Validate.isUUID added
 * 1.2.7 - Removed debug info from URIBuilder
 * 1.2.4 - Runs with Dart 1.1 + IntelliJ 13

@@ -9,6 +9,7 @@ class _IAmAJsonObject extends _NotAJsonObject {
 }
 
 testValidate() {
+  final _logger = new Logger('validate.testValidate');
 
   group('Validator-Test', () {
 
@@ -124,10 +125,37 @@ testValidate() {
       expect(() => (Validate.isKeyInMap("email",map1ToTest)),throwsA(new isInstanceOf<ArgumentError>()));
       });     
     
-//    test('> isInstanceOf', () {
-//      expect(() => (Validate.isInstanceOf(String,"Hallo")),returnsNormally);
-//      expect(() => (Validate.isInstanceOf(int,"Hallo")),throwsA(new isInstanceOf<ArgumentError>()));
-//      });     
+    test('> isInstanceOf', () {
+
+      void test(final instanceCheck instanceCheck,final obj) {
+        bool match = instanceCheck.check(obj);
+        _logger.info("Type: ${instanceCheck.runtimeType}, M $match T: ${instanceCheck.type}");
+      }
+
+      // test(new instanceCheck<List<String>>(),new List<String>());
+      // test(new instanceCheck<List>(),new List());
+      // test(new instanceCheck<String>(),"Test");
+
+      //Validate.isInstance(new instanceCheck<String>(),"Hallo");
+      //Validate.isInstance(new instanceCheck<String>(),1);
+
+      expect(() => (Validate.isInstance(new instanceCheck<List<String>>(),new List())),throwsA(new isInstanceOf<ArgumentError>()));
+      expect(() => (Validate.isInstance(new instanceCheck<List<String>>(strict: false),new List())),returnsNormally);
+
+      expect(() => (Validate.isInstance(new instanceCheck<String>(),"Test")),returnsNormally);
+      expect(() => (Validate.isInstance(new instanceCheck<String>(),1)),throwsA(new isInstanceOf<ArgumentError>()));
+      expect(() => (Validate.isInstance(new instanceCheck<String>(strict: false),1)),throwsA(new isInstanceOf<ArgumentError>()));
+
+      expect(() => (Validate.isInstance(new instanceCheck<int>(),29)),returnsNormally);
+      expect(() => (Validate.isInstance(new instanceCheck<String>(),1)),throwsA(new isInstanceOf<ArgumentError>()));
+
+      expect(() => (Validate.isInstance(new instanceCheck<double>(),29.0)),returnsNormally);
+      expect(() => (Validate.isInstance(new instanceCheck<double>(),29)),throwsA(new isInstanceOf<ArgumentError>()));
+
+      expect(() => (Validate.isInstance(new instanceCheck<num>(strict: false),29.0)),returnsNormally);
+      expect(() => (Validate.isInstance(new instanceCheck<num>(),29.0)),throwsA(new isInstanceOf<ArgumentError>()));
+      expect(() => (Validate.isInstance(new instanceCheck<num>(strict: false),29)),returnsNormally);
+      });
   });
 }
 

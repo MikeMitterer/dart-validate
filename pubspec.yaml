@@ -1,5 +1,5 @@
 name: validate
-version: 1.3.3
+version: 1.4.0
 author: Mike Mitterer  <office@mikemitterer.at>
 description: This class assists in validating method arguments
 homepage: https://github.com/MikeMitterer/dart-validate
@@ -9,3 +9,5 @@ dependencies:
 dev_dependencies:
   browser: any
   unittest: any
+  logging: any
+  console_log_handler: any

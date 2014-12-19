@@ -1,5 +1,23 @@
 part of validate;
 
+/// Helper to get the runtime-Info.
+class instanceCheck<T> {
+    final bool _strict;
+
+    /// if strict is set to true List<String> == List comparison return false
+    instanceCheck({final bool strict: true }) : _strict = strict;
+
+    bool check(final obj) {
+        return (obj is T && _strict == false) || (_strict == true && obj is T && obj.runtimeType.toString() == type);
+    }
+
+    String get type {
+        final String type = this.runtimeType.toString().replaceFirst(new RegExp(r'[^<]+<'),'').replaceFirst(new RegExp(r'>$'),'');
+        //print("T $type");
+        return type;
+    }
+}
+
 /**
  * <p>This class assists in validating arguments. The validation methods are
  * based along the following principles:
@@ -33,12 +51,13 @@ abstract class Validate {
     static const String DEFAULT_EXCLUSIVE_BETWEEN_EX_MESSAGE = "The value is not in the specified exclusive range";
     static const String DEFAULT_JSON_MESSAGE = "The value is neither a num, String, bool, Null, List or Map";
     static const String DEFAULT_KEY_IN_MAP_MESSAGE = "The key '%key%' is not available for this Map";
-    
+
+    static const String DEFAULT_IS_INSTANCE_OF_EX_MESSAGE = "The instance of the validated object is invalid. Should have been %wish% but was %truth%";
+
     /*
     static const String _DEFAULT_NO_NULL_ELEMENTS_COLLECTION_EX_MESSAGE = "The validated collection contains null element at specified index";
     static const String _DEFAULT_VALID_INDEX_CHAR_SEQUENCE_EX_MESSAGE = "The validated character sequence index is invalid";
     static const String _DEFAULT_VALID_INDEX_COLLECTION_EX_MESSAGE ="The validated collection index is invalid";
-    static const String _DEFAULT_IS_INSTANCE_OF_EX_MESSAGE = "The instance of the validated object is invalid";
     */
 
     // isTrue
@@ -356,25 +375,14 @@ abstract class Validate {
      * <p>Validate that the argument is an instance of the specified class; otherwise
      * throwing an exception. This method is useful when validating according to an arbitrary
      * class</p>
-     *
-     * <pre>Validate.isInstanceOf(OkClass.class, object);</pre>
-     *
-     * <p>The message of the exception is &quot;The validated object is not an instance of&quot;
-     * followed by the name of the class</p>
-     *
-     * [type] the class the object must be validated against, not null
-     * [obj] the object to check, null throws an exception
-     * Throws [ArgumentError] if argument is not of specified class
-     * @see #isInstanceOf(Class, Object, String, Object...)
-     *
-     * @since 3.0
      */
-    /*  
-     static void isInstanceOf(Type type, var obj,[String message = _DEFAULT_IS_INSTANCE_OF_EX_MESSAGE]) {
-        final Type tocheck = obj.runtimeType;
-        if (type.runtimeType.hashCode != tocheck.runtimeType.hashCode) {
-            throw new ArgumentError(message);
+
+     static void isInstance(final instanceCheck instanceCheck, var obj,[String message = DEFAULT_IS_INSTANCE_OF_EX_MESSAGE]) {
+        if (!instanceCheck.check(obj)) {
+            final String wish = instanceCheck.type;
+            final String truth = ( obj != null ? obj.runtimeType.toString() : 'null' );
+            throw new ArgumentError(message.replaceAll('%wish%',wish).replaceAll('%truth%',truth));
         }
     }
-    */
+
 }

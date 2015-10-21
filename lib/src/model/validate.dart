@@ -381,8 +381,9 @@ abstract class Validate {
      *    Validate.isInstance(new instanceCheck<String>(),myParam);
      *    Validate.isInstance(new instanceCheck<List<String>>(strict: false),new List())
      */
-
      static void isInstance(final instanceCheck instanceCheck, var obj,[String message = DEFAULT_IS_INSTANCE_OF_EX_MESSAGE]) {
+        Validate.notNull(instanceCheck);
+
         if (!instanceCheck.check(obj)) {
             final String wish = instanceCheck.type;
             final String truth = ( obj != null ? obj.runtimeType.toString() : 'null' );

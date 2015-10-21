@@ -155,6 +155,9 @@ testValidate() {
       expect(() => (Validate.isInstance(new instanceCheck<num>(strict: false),29.0)),returnsNormally);
       expect(() => (Validate.isInstance(new instanceCheck<num>(),29.0)),throwsA(new isInstanceOf<ArgumentError>()));
       expect(() => (Validate.isInstance(new instanceCheck<num>(strict: false),29)),returnsNormally);
+
+      expect(() => (Validate.isInstance(null,29.0)),throwsA(new isInstanceOf<ArgumentError>()));
+
       });
   });
 }

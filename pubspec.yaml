@@ -4,6 +4,9 @@ author: Mike Mitterer  <office@mikemitterer.at>
 description: This class assists in validating method arguments
 homepage: https://github.com/MikeMitterer/dart-validate
 
+environment:
+  sdk: ">=1.8.0 <2.0.0"
+
 dependencies:
 
   browser: ^0.10.0

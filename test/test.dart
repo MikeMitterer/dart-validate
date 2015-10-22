@@ -1,25 +1,23 @@
+// ----------------------------------------------------------------------------
+// Start der Tests mit:
+//      pub run test test/test.dart
+//
 library test;
 
-import 'package:unittest/unittest.dart';
-//import 'package:unittest/html_enhanced_config.dart';
+import 'package:test/test.dart';
 
 //-----------------------------------------------------------------------------
 // Logging
 
 import 'package:logging/logging.dart';
-import 'package:console_log_handler/console_log_handler.dart';
+import 'package:logging_handlers/logging_handlers_shared.dart';
 
 import 'package:validate/validate.dart';
 
 part 'src/validate_test.dart';
 
-//
-// Mehr Infos: http://www.dartlang.org/articles/dart-unit-tests/
-//
 main() {
-  //useHtmlEnhancedConfiguration();
   configLogging();
-
   testValidate();
 }
 
@@ -29,5 +27,5 @@ void configLogging() {
   // now control the logging.
   // Turn off all logging first
   Logger.root.level = Level.INFO;
-  Logger.root.onRecord.listen(new LogConsoleHandler());
+  Logger.root.onRecord.listen(new LogPrintHandler());
 }

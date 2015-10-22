@@ -85,17 +85,24 @@ testValidate() {
       expect(() => (Validate.isEmail("urbi@orbi.it")),returnsNormally);
       expect(() => (Validate.isEmail("urbi@orbit")),throwsA(new isInstanceOf<ArgumentError>()));
       
-      expect(() => (Validate.isPassword("1abcdefGH#")),returnsNormally);
-      expect(() => (Validate.isPassword("urbi@orbi.it")),throwsA(new isInstanceOf<ArgumentError>()));
-      
       expect(() => (Validate.isAlphaNumeric("123abcdö")),returnsNormally);
       expect(() => (Validate.isAlphaNumeric("123a#bcd")),throwsA(new isInstanceOf<ArgumentError>()));  
       
       expect(() => (Validate.isHex("1234567890abcdef")),returnsNormally);
       expect(() => (Validate.isHex("0x1234567890abcdef")),returnsNormally);
       expect(() => (Validate.isHex("1234567890abcdefg")),throwsA(new isInstanceOf<ArgumentError>()));            
-      }); 
-    
+      });
+
+    test('> password', () {
+        expect(() => (Validate.isPassword("1abcdefGH#")),returnsNormally);
+
+        expect(() => (Validate.isPassword("urbi@orbi.it")),throwsA(new isInstanceOf<ArgumentError>()));
+        expect(() => (Validate.isPassword("1234567890abcdefGH#")),throwsA(new isInstanceOf<ArgumentError>()));
+        expect(() => (Validate.isPassword("12345678aA# ")),throwsA(new isInstanceOf<ArgumentError>()));
+        expect(() => (Validate.isPassword("12345678aA'")),throwsA(new isInstanceOf<ArgumentError>()));
+        expect(() => (Validate.isPassword("")),throwsA(new isInstanceOf<ArgumentError>()));
+    });
+
     test('> inclusive', () {
       expect(() => (Validate.inclusiveBetween(0,2,2)),returnsNormally);
       expect(() => (Validate.inclusiveBetween(0,2,3)),throwsA(new isInstanceOf<ArgumentError>()));

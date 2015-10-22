@@ -6,8 +6,10 @@ homepage: https://github.com/MikeMitterer/dart-validate
 
 dependencies:
 
+  browser: ^0.10.0
+
+  logging: ^0.11.0
+  logging_handlers: ^0.8.0
+
 dev_dependencies:
-  browser: any
-  unittest: any
-  logging: any
-  console_log_handler: any
+  test: any

@@ -31,10 +31,13 @@ class instanceCheck<T> {
 
 /**
  * Constructor. This class should not normally be instantiated.
+ * Pattern-RegExp:
+ *      http://goo.gl/jxPnU3
+ *      http://www.mkyong.com/regular-expressions/how-to-validate-password-with-regular-expression/
  */
 abstract class Validate {
     static const String PATTERN_EMAIL         = "^([0-9a-zA-Z]([-.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})\$";
-    static const String PATTERN_PW            = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%]).{8,15})";  // http://www.mkyong.com/regular-expressions/how-to-validate-password-with-regular-expression/
+    static const String PATTERN_PW            = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%])[0-9a-zA-Z@#\$%]{8,15}\$";
     static const String PATTERN_ALPHANUMERIC  = "^[a-zA-Z0-9öäüÖÄÜß]+\$";
     static const String PATTERN_HEX           = "^(0x[a-fA-F0-9]+)|([a-fA-F0-9])+\$";
     static const String PATTERN_UUID         = "^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}\$";

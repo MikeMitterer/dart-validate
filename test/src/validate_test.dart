@@ -95,6 +95,7 @@ testValidate() {
 
     test('> password', () {
         expect(() => (Validate.isPassword("1abcdefGH#")),returnsNormally);
+        expect(() => (Validate.isPassword("1abcdefGH?")),returnsNormally);
 
         expect(() => (Validate.isPassword("urbi@orbi.it")),throwsA(new isInstanceOf<ArgumentError>()));
         expect(() => (Validate.isPassword("1234567890abcdefGH#")),throwsA(new isInstanceOf<ArgumentError>()));

@@ -102,6 +102,7 @@ testValidate() {
         expect(() => (Validate.isPassword("12345678aA# ")),throwsA(new isInstanceOf<ArgumentError>()));
         expect(() => (Validate.isPassword("12345678aA'")),throwsA(new isInstanceOf<ArgumentError>()));
         expect(() => (Validate.isPassword("")),throwsA(new isInstanceOf<ArgumentError>()));
+        expect(() => (Validate.isPassword("1abcdefGH;")),throwsA(new isInstanceOf<ArgumentError>()));
     });
 
     test('> inclusive', () {

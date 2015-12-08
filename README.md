@@ -1,4 +1,4 @@
-## Validate ##
+## Validate
 Lightweight library for validating function arguments in Dart.
 
 This library is mainly a port of Apaches org.apache.commons.lang3.Validate class
@@ -10,7 +10,8 @@ to validate parameters everywhere, as it makes code maintenance and refactoring 
 
 For further documentation please refere to the Unit-Tests.
 
-###History###
+### History
+
 * 1.4.0 - Instance check added
 * 1.3.0 - Validate.isUUID added
 * 1.2.7 - Removed debug info from URIBuilder
@@ -20,9 +21,12 @@ For further documentation please refere to the Unit-Tests.
 * 1.0.5 - Changed GitHub-Repository to dart-validate
 * 1.0.4 - Replaced NullPointerException with ArgumentError - makes more sense
 
-###License###
+You can see further changes on the [CHANGELOG](https://goo.gl/2d63eC)!
 
-    Copyright 2013 Michael Mitterer, IT-Consulting and Development Limited,
+
+### License
+
+    Copyright 2015 Michael Mitterer, IT-Consulting and Development Limited,
     Austrian Branch
 
     Licensed under the Apache License, Version 2.0 (the "License");

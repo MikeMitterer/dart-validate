@@ -139,6 +139,16 @@ main() {
 
             //expect(() => (Validate.isKeyInMap("email",map1ToTest)),returnsNormally);
             expect(() => (Validate.isKeyInMap("email", map1ToTest)), throwsA(new isInstanceOf<ArgumentError>()));
+
+            try {
+                Validate.isKeyInMap("email", map1ToTest);
+                expect(false,isTrue);
+
+            } on ArgumentError catch(e) {
+                // Strip out all whitespaces
+                expect(e.message.replaceAll(new RegExp("\\s+")," "),
+                    "The key 'email' is not available for this structure: { \"name\": \"Mike\", \"number\": 42 }");
+            }
         });
 
         test('> isInstanceOf', () {

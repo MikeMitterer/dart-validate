@@ -19,6 +19,8 @@
 
 library validate;
 
+import 'dart:convert';
+
 part "src/errors.dart";
 part "src/utils.dart";
 
@@ -57,9 +59,12 @@ abstract class Validate {
     static const String DEFAULT_INCLUSIVE_BETWEEN_EX_MESSAGE = "The value is not in the specified inclusive range";
     static const String DEFAULT_EXCLUSIVE_BETWEEN_EX_MESSAGE = "The value is not in the specified exclusive range";
     static const String DEFAULT_JSON_MESSAGE = "The value is neither a num, String, bool, Null, List or Map";
-    static const String DEFAULT_KEY_IN_MAP_MESSAGE = "The key '%key%' is not available for this Map";
+    static const String DEFAULT_KEY_IN_MAP_MESSAGE = "The key '%key%' is not available for this structure: %structure%";
 
     static const String DEFAULT_IS_INSTANCE_OF_EX_MESSAGE = "The instance of the validated object is invalid. Should have been %wish% but was %truth%";
+
+    /// prettyPrint for JSON (Used for KeyInMap check)
+    static const JsonEncoder _PRETTYJSON = const JsonEncoder.withIndent('  ');
 
     /*
     static const String _DEFAULT_NO_NULL_ELEMENTS_COLLECTION_EX_MESSAGE = "The validated collection contains null element at specified index";
@@ -371,7 +376,8 @@ abstract class Validate {
     static void isKeyInMap(final dynamic key,final Map map,[String message = DEFAULT_KEY_IN_MAP_MESSAGE]) {
         Validate.notNull(map, message);
         if(!map.containsKey(key) || map[key] == null) {
-            throw new ArgumentError(message.replaceFirst("%key%", key.toString()));
+            throw new ArgumentError(message.replaceFirst("%key%", key.toString())
+                .replaceFirst("%structure%",_PRETTYJSON.convert(map)));
         }
     }
 

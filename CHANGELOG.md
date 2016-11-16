@@ -1,6 +1,11 @@
 # Change Log for validate
 This class assists in validating method arguments
 
+## [v1.5.3](http://github.com/mikemitterer/dart-validate/compare/v1.5.2...v1.5.3) - 2016-11-16
+
+### Docs
+* Strong-Mode support [7878549](https://github.com/mikemitterer/dart-validate/commit/7878549628d44e64c627cd84d095e1e7bc1567fa)
+
 ## [v1.5.2](http://github.com/mikemitterer/dart-validate/compare/v1.5.1...v1.5.2) - 2016-07-14
 
 ### Docs

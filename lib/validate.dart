@@ -25,14 +25,24 @@ part "src/errors.dart";
 part "src/utils.dart";
 
 /**
- * <p>This class assists in validating arguments. The validation methods are
+ * This class assists in validating arguments. The validation methods are
  * based along the following principles:
- * For example:</p>
  *
- * <pre>
- * Validate.isTrue(i > 0, "The value must be greater than zero");
- * Validate.notNull(surname, "The surname must not be null");
- * </pre>
+ *      Validate.isTrue(i > 0, "The value must be greater than zero");
+ *      Validate.notNull(surname, "The surname must not be null");
+ *
+ * For testing - use it like this:
+ *      class UserContext {
+ *          final String _restID;
+ *          UserContext(this._restID) {
+ *              Validate.isUUID(_restID);
+ *          }
+ *      }
+ *      test('> wrong ID ', () {
+ *          expect(() => new UserContext("abc"),
+ *          throwsArgumentError);
+ *      }); // end of 'wrong ID ' test
+ *
  */
 
 /**

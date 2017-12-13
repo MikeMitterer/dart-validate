@@ -8,8 +8,11 @@ build() {
 }
 
 @Task()
-@Depends(analyze)
-test() {
+@Depends(analyze,testUnit)
+test() { }
+
+@Task()
+testUnit() {
     new TestRunner().testAsync(files: "test/unit");
 
     // Alle test mit @TestOn("content-shell") im header

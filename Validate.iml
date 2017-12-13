@@ -6,10 +6,6 @@
       <excludeFolder url="" />
       <excludeFolder url="file://$MODULE_DIR$/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
-      <excludeFolder url="file://$MODULE_DIR$/packages" />
-      <excludeFolder url="file://$MODULE_DIR$/test/packages" />
-      <excludeFolder url="file://$MODULE_DIR$/test/unit/packages" />
-      <excludeFolder url="file://$MODULE_DIR$/tool/packages" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Dart SDK" level="project" />

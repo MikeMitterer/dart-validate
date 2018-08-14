@@ -20,6 +20,7 @@
 library validate;
 
 import 'dart:convert';
+import 'package:validate/expect.dart' as expect;
 
 part "src/errors.dart";
 part "src/utils.dart";
@@ -45,8 +46,9 @@ part "src/utils.dart";
  *
  */
 
+
+
 /**
- * Constructor. This class should not normally be instantiated.
  * Pattern-RegExp:
  *      http://goo.gl/jxPnU3
  *      http://www.mkyong.com/regular-expressions/how-to-validate-password-with-regular-expression/
@@ -97,11 +99,8 @@ abstract class Validate {
      * [message]  the exception message if invalid, not null
      * Throws [ArgumentError] if expression is [false]
      */
-    static void isTrue(bool expression, [String message = DEFAULT_IS_TRUE_EX_MESSAGE]) {
-        if (expression == false) {
-            throw new ArgumentError(message);
-        }
-    }
+    static void isTrue(final bool expression, [ final String message = DEFAULT_IS_TRUE_EX_MESSAGE])
+            => expect.isTrue(expression, message: () => message);
 
     // notNull
     //---------------------------------------------------------------------------------
@@ -119,12 +118,15 @@ abstract class Validate {
      * Returns the validated object if not null
      * Throws [ArgumentError] if the object is null
      */
-    static dynamic notNull(var object,[String message = DEFAULT_IS_NULL_EX_MESSAGE]) {
-        if (object == null) {
-            throw new ArgumentError(message);
-        }
-        return object;
-    }
+//    static dynamic notNull(final object,[String message = DEFAULT_IS_NULL_EX_MESSAGE]) {
+//        if (object == null) {
+//            throw new ArgumentError(message);
+//        }
+//        return object;
+//    }
+
+    static T notNull<T>(final T object,[String message = DEFAULT_IS_NULL_EX_MESSAGE])
+        => expect.notNull(object, message: () => message);
 
 
     // notEmpty array
@@ -143,7 +145,7 @@ abstract class Validate {
      * Throws [ArgumentError] if the array is [null]
      * Throws [ArgumentError] if the array is empty
      */
-    static notEmpty(var value, [String message = DEFAULT_NOT_EMPTY_MESSAGE]) {
+    static notEmpty(final value, [String message = DEFAULT_NOT_EMPTY_MESSAGE]) {
         Validate.notNull(value,message);
         /*
         if ((value is List || value is Map || value is String) && value.length == 0) {
@@ -175,7 +177,7 @@ abstract class Validate {
      * Throws [ArgumentError] if the character sequence is [null]
      * Throws [ArgumentError] if the character sequence is blank
      */
-    static String notBlank(String value, [String message = DEFAULT_NOT_BLANK_EX_MESSAGE]) {
+    static String notBlank(final String value, [String message = DEFAULT_NOT_BLANK_EX_MESSAGE]) {
         Validate.notNull(value,message);
         if ((value is String) == false || value.trim().isEmpty) {
             throw new ArgumentError(message);

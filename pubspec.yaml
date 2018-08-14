@@ -10,3 +10,6 @@ environment:
 dev_dependencies:
   test: any
   grinder: any
+
+  console_log_handler: ^1.0.0
+    # path: /Volumes/Daten/DevLocal/DevDart/ConsoleLogHandler

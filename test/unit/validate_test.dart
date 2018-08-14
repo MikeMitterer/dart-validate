@@ -12,6 +12,9 @@ class _IAmAJsonObject extends _NotAJsonObject {
 }
 
 main() {
+    // final _logger = new Logger('validate.testValidate');
+    // configLogging();
+
     group('Validator-Test', () {
         test('isTrue', () {
             expect(() => (Validate.isTrue(true)), returnsNormally);
@@ -148,6 +151,7 @@ main() {
         test('> isInstanceOf', () {
             expect(() => (Validate.isInstance(new instanceCheck<List<String>>(), new List())),
                 throwsA(new isInstanceOf<ArgumentError>()));
+
             expect(() => (Validate.isInstance(new instanceCheck<List<String>>(strict: false), new List<String>())),
                 returnsNormally);
 
@@ -174,3 +178,4 @@ main() {
         });
     });
 }
+

@@ -1,6 +1,9 @@
 # Change Log for validate
 This class assists in validating method arguments
 
+## [v1.6.1]
+Updated pubspec to support Dart 2.
+
 ## [v1.5.4](http://github.com/mikemitterer/dart-validate/compare/v1.5.3...v1.5.4) - 2017-01-31
 
 ### Docs

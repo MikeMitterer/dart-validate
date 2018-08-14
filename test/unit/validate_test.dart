@@ -1,7 +1,4 @@
 import 'package:test/test.dart';
-
-import 'package:logging/logging.dart';
-import 'package:logging_handlers/logging_handlers_shared.dart';
 import 'package:validate/validate.dart';
 
 class _NotAJsonObject {
@@ -15,9 +12,6 @@ class _IAmAJsonObject extends _NotAJsonObject {
 }
 
 main() {
-    // final _logger = new Logger('validate.testValidate');
-    configLogging();
-
     group('Validator-Test', () {
         test('isTrue', () {
             expect(() => (Validate.isTrue(true)), returnsNormally);
@@ -152,21 +146,9 @@ main() {
         });
 
         test('> isInstanceOf', () {
-            //void test(final instanceCheck instanceCheck,final obj) {
-            //    bool match = instanceCheck.check(obj);
-            //    _logger.info("Type: ${instanceCheck.runtimeType}, M $match T: ${instanceCheck.type}");
-            //}
-
-            // test(new instanceCheck<List<String>>(),new List<String>());
-            // test(new instanceCheck<List>(),new List());
-            // test(new instanceCheck<String>(),"Test");
-
-            //Validate.isInstance(new instanceCheck<String>(),"Hallo");
-            //Validate.isInstance(new instanceCheck<String>(),1);
-
             expect(() => (Validate.isInstance(new instanceCheck<List<String>>(), new List())),
                 throwsA(new isInstanceOf<ArgumentError>()));
-            expect(() => (Validate.isInstance(new instanceCheck<List<String>>(strict: false), new List())),
+            expect(() => (Validate.isInstance(new instanceCheck<List<String>>(strict: false), new List<String>())),
                 returnsNormally);
 
             expect(() => (Validate.isInstance(new instanceCheck<String>(), "Test")), returnsNormally);
@@ -191,13 +173,4 @@ main() {
             expect(() => (Validate.isInstance(null, 29.0)), throwsA(new isInstanceOf<ArgumentError>()));
         });
     });
-}
-
-void configLogging() {
-    hierarchicalLoggingEnabled = false; // set this to true - its part of Logging SDK
-
-    // now control the logging.
-    // Turn off all logging first
-    Logger.root.level = Level.INFO;
-    Logger.root.onRecord.listen(new LogPrintHandler());
 }

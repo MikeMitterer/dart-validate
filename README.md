@@ -26,7 +26,7 @@ You can see further changes on the [CHANGELOG](https://goo.gl/2d63eC)!
 
 ### License
 
-    Copyright 2017 Michael Mitterer, IT-Consulting and Development Limited,
+    Copyright 2018 Michael Mitterer, IT-Consulting and Development Limited,
     Austrian Branch
 
     Licensed under the Apache License, Version 2.0 (the "License");

@@ -11,6 +11,14 @@ class _IAmAJsonObject extends _NotAJsonObject {
     }
 }
 
+/// A matcher for [IllegalStateError].
+const isIllegalStateError = const TypeMatcher<IllegalStateError>();
+
+/// A matcher for functions that throw IllegalStateError.
+// ignore: deprecated_member_use
+const Matcher throwsIllegalStateError = const Throws(isIllegalStateError);
+
+
 main() {
     // final _logger = new Logger('validate.testValidate');
     // configLogging();
@@ -18,12 +26,12 @@ main() {
     group('Validator-Test', () {
         test('isTrue', () {
             expect(() => (Validate.isTrue(true)), returnsNormally);
-            expect(() => (Validate.isTrue(false)), throwsA(new isInstanceOf<ArgumentError>()));
+            expect(() => (Validate.isTrue(false)), throwsArgumentError);
         });
 
         test('> notNull', () {
             expect(() => (Validate.notNull("Test")), returnsNormally);
-            expect(() => (Validate.notNull(null)), throwsA(new isInstanceOf<ArgumentError>()));
+            expect(() => (Validate.notNull(null)), throwsArgumentError);
         });
 
         test('> notEmpty', () {
@@ -31,21 +39,21 @@ main() {
             expect(() => (Validate.notEmpty([10, 20])), returnsNormally);
 
             final Map<String, Object> map = new Map<String, Object>();
-            expect(() => (Validate.notEmpty(map)), throwsA(new isInstanceOf<ArgumentError>()));
+            expect(() => (Validate.notEmpty(map)), throwsArgumentError);
 
             map["Hallo"] = "Test";
             expect(() => (Validate.notEmpty(map)), returnsNormally);
 
             // int has not Method "isEmpty"
-            expect(() => (Validate.notEmpty(0)), throwsA(new isInstanceOf<NoSuchMethodError>()));
+            expect(() => (Validate.notEmpty(0)), throwsNoSuchMethodError);
 
-            expect(() => (Validate.notEmpty("")), throwsA(new isInstanceOf<ArgumentError>()));
+            expect(() => (Validate.notEmpty("")), throwsArgumentError);
         });
 
         test('> notBlank', () {
             expect(() => (Validate.notBlank("Test")), returnsNormally);
-            expect(() => (Validate.notBlank(null)), throwsA(new isInstanceOf<ArgumentError>()));
-            expect(() => (Validate.notBlank("")), throwsA(new isInstanceOf<ArgumentError>()));
+            expect(() => (Validate.notBlank(null)), throwsArgumentError);
+            expect(() => (Validate.notBlank("")), throwsArgumentError);
 
             // Dart should point out at least a warning!!!!
             //expect(() => (Validate.notBlank(10)),throwsA(new isInstanceOf<ArgumentError>()));
@@ -61,14 +69,14 @@ main() {
 
             list.add(null);
             expect(4, list.length);
-            expect(() => (Validate.noNullElements(list)), throwsA(new isInstanceOf<ArgumentError>()));
+            expect(() => (Validate.noNullElements(list)), throwsArgumentError);
 
             expect(() => (Validate.noNullElements(new List<String>())), returnsNormally);
         });
 
         test('> validIndex', () {
             expect(() => (Validate.validIndex([1, 2], 1)), returnsNormally);
-            expect(() => (Validate.validIndex([1, 2], 3)), throwsA(new isInstanceOf<RangeError>()));
+            expect(() => (Validate.validIndex([1, 2], 3)), throwsRangeError);
 
             final List<String> list = new List<String>()
                 ..addAll(["one", "two", "three"]);
@@ -78,7 +86,7 @@ main() {
 
         test('> validState', () {
             expect(() => (Validate.validState(true)), returnsNormally);
-            expect(() => (Validate.validState(false)), throwsA(new isInstanceOf<IllegalStateError>()));
+            expect(() => (Validate.validState(false)), throwsIllegalStateError);
         });
 
         test('> matchesPattern', () {
@@ -87,33 +95,33 @@ main() {
                 throwsA(new isInstanceOf<ArgumentError>()));
 
             expect(() => (Validate.isEmail("urbi@orbi.it")), returnsNormally);
-            expect(() => (Validate.isEmail("urbi@orbit")), throwsA(new isInstanceOf<ArgumentError>()));
+            expect(() => (Validate.isEmail("urbi@orbit")), throwsArgumentError);
 
             expect(() => (Validate.isAlphaNumeric("123abcdö")), returnsNormally);
-            expect(() => (Validate.isAlphaNumeric("123a#bcd")), throwsA(new isInstanceOf<ArgumentError>()));
+            expect(() => (Validate.isAlphaNumeric("123a#bcd")), throwsArgumentError);
 
             expect(() => (Validate.isHex("1234567890abcdef")), returnsNormally);
             expect(() => (Validate.isHex("0x1234567890abcdef")), returnsNormally);
-            expect(() => (Validate.isHex("1234567890abcdefg")), throwsA(new isInstanceOf<ArgumentError>()));
+            expect(() => (Validate.isHex("1234567890abcdefg")), throwsArgumentError);
         });
 
         test('> password', () {
             expect(() => (Validate.isPassword("1abcdefGH#")), returnsNormally);
             expect(() => (Validate.isPassword("1abcdefGH?")), returnsNormally);
 
-            expect(() => (Validate.isPassword("urbi@orbi.it")), throwsA(new isInstanceOf<ArgumentError>()));
-            expect(() => (Validate.isPassword("1234567890abcdefGH#")), throwsA(new isInstanceOf<ArgumentError>()));
-            expect(() => (Validate.isPassword("12345678aA# ")), throwsA(new isInstanceOf<ArgumentError>()));
-            expect(() => (Validate.isPassword("12345678aA'")), throwsA(new isInstanceOf<ArgumentError>()));
-            expect(() => (Validate.isPassword("")), throwsA(new isInstanceOf<ArgumentError>()));
-            expect(() => (Validate.isPassword("1abcdefGH;")), throwsA(new isInstanceOf<ArgumentError>()));
+            expect(() => (Validate.isPassword("urbi@orbi.it")), throwsArgumentError);
+            expect(() => (Validate.isPassword("1234567890abcdefGH#")), throwsArgumentError);
+            expect(() => (Validate.isPassword("12345678aA# ")), throwsArgumentError);
+            expect(() => (Validate.isPassword("12345678aA'")), throwsArgumentError);
+            expect(() => (Validate.isPassword("")), throwsArgumentError);
+            expect(() => (Validate.isPassword("1abcdefGH;")), throwsArgumentError);
         });
 
         test('> inclusive', () {
             expect(() => (Validate.inclusiveBetween(0, 2, 2)), returnsNormally);
-            expect(() => (Validate.inclusiveBetween(0, 2, 3)), throwsA(new isInstanceOf<ArgumentError>()));
+            expect(() => (Validate.inclusiveBetween(0, 2, 3)), throwsArgumentError);
 
-            expect(() => (Validate.exclusiveBetween(0, 2, 2)), throwsA(new isInstanceOf<ArgumentError>()));
+            expect(() => (Validate.exclusiveBetween(0, 2, 2)), throwsArgumentError);
             expect(() => (Validate.exclusiveBetween(0, 2, 1)), returnsNormally);
         });
 
@@ -122,7 +130,7 @@ main() {
             expect(() => (Validate.isJson(1)), returnsNormally);
             expect(() => (Validate.isJson(["3", "4"])), returnsNormally);
 
-            expect(() => (Validate.isJson(new _NotAJsonObject())), throwsA(new isInstanceOf<ArgumentError>()));
+            expect(() => (Validate.isJson(new _NotAJsonObject())), throwsArgumentError);
             expect(() => (Validate.isJson(new _IAmAJsonObject())), returnsNormally);
         });
 
@@ -135,7 +143,7 @@ main() {
             expect(() => (Validate.isKeyInMap("number", map1ToTest)), returnsNormally);
 
             //expect(() => (Validate.isKeyInMap("email",map1ToTest)),returnsNormally);
-            expect(() => (Validate.isKeyInMap("email", map1ToTest)), throwsA(new isInstanceOf<ArgumentError>()));
+            expect(() => (Validate.isKeyInMap("email", map1ToTest)), throwsArgumentError);
 
             try {
                 Validate.isKeyInMap("email", map1ToTest);
@@ -150,31 +158,23 @@ main() {
 
         test('> isInstanceOf', () {
             expect(() => (Validate.isInstance(new instanceCheck<List<String>>(), new List())),
-                throwsA(new isInstanceOf<ArgumentError>()));
+                throwsArgumentError);
 
             expect(() => (Validate.isInstance(new instanceCheck<List<String>>(strict: false), new List<String>())),
                 returnsNormally);
 
             expect(() => (Validate.isInstance(new instanceCheck<String>(), "Test")), returnsNormally);
-            expect(() => (Validate.isInstance(new instanceCheck<String>(), 1)),
-                throwsA(new isInstanceOf<ArgumentError>()));
-            expect(() => (Validate.isInstance(new instanceCheck<String>(strict: false), 1)),
-                throwsA(new isInstanceOf<ArgumentError>()));
+            expect(() => (Validate.isInstance(new instanceCheck<String>(), 1)), throwsArgumentError);
+            expect(() => (Validate.isInstance(new instanceCheck<String>(strict: false), 1)),throwsArgumentError);
 
             expect(() => (Validate.isInstance(new instanceCheck<int>(), 29)), returnsNormally);
-            expect(() => (Validate.isInstance(new instanceCheck<String>(), 1)),
-                throwsA(new isInstanceOf<ArgumentError>()));
-
-            expect(() => (Validate.isInstance(new instanceCheck<double>(), 29.0)), returnsNormally);
-            expect(() => (Validate.isInstance(new instanceCheck<double>(), 29)),
-                throwsA(new isInstanceOf<ArgumentError>()));
+            expect(() => (Validate.isInstance(new instanceCheck<String>(), 1)),throwsArgumentError);
 
             expect(() => (Validate.isInstance(new instanceCheck<num>(strict: false), 29.0)), returnsNormally);
-            expect(() => (Validate.isInstance(new instanceCheck<num>(), 29.0)),
-                throwsA(new isInstanceOf<ArgumentError>()));
+            expect(() => (Validate.isInstance(new instanceCheck<num>(), 29.0)),throwsArgumentError);
             expect(() => (Validate.isInstance(new instanceCheck<num>(strict: false), 29)), returnsNormally);
 
-            expect(() => (Validate.isInstance(null, 29.0)), throwsA(new isInstanceOf<ArgumentError>()));
+            expect(() => (Validate.isInstance(null, 29.0)), throwsArgumentError);
         });
     });
 }

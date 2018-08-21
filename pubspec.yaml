@@ -5,7 +5,7 @@ description: This class assists in validating method arguments
 homepage: https://github.com/MikeMitterer/dart-validate
 
 environment:
-  sdk: ">=1.8.0 <3.0.0"
+  sdk: ">=2.0.0 <3.0.0"
 
 dev_dependencies:
   test: any
@@ -13,3 +13,9 @@ dev_dependencies:
 
   console_log_handler: ^1.0.0
     # path: /Volumes/Daten/DevLocal/DevDart/ConsoleLogHandler
+
+  build_runner: any
+  build_test: any
+  build_web_compilers: any
+
+

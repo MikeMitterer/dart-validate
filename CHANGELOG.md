@@ -1,8 +1,10 @@
 # Change Log for validate
 This class assists in validating method arguments
 
-## [v1.6.1]
-Updated pubspec to support Dart 2.
+## [v1.7](http://github.com/mikemitterer/dart-validate/compare/v1.6...v1.7) - 2018-08-21
+
+### Feature
+* Support for GMAIL infinite mailboxes (PATTERN_EMAIL) changed. Closes #3 [4af87cb](https://github.com/mikemitterer/dart-validate/commit/4af87cb6c1892421eab1ce27cdfe4c872ddb6ef0)
 
 ## [v1.5.4](http://github.com/mikemitterer/dart-validate/compare/v1.5.3...v1.5.4) - 2017-01-31
 

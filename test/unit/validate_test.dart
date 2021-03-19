@@ -62,7 +62,7 @@ main() {
         test('> noNullElements', () {
             expect(() => (Validate.noNullElements([1, 2, 3, 4])), returnsNormally);
 
-            final List<String> list = new List<String>()
+            final List<String?> list = new List<String?>()
                 ..addAll(["one", "two", "three"]);
 
             expect(() => (Validate.noNullElements(list)), returnsNormally);

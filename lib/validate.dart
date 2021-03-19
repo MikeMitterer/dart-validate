@@ -177,9 +177,9 @@ abstract class Validate {
      * Throws [ArgumentError] if the character sequence is [null]
      * Throws [ArgumentError] if the character sequence is blank
      */
-    static String notBlank(final String value, [String message = DEFAULT_NOT_BLANK_EX_MESSAGE]) {
+    static String? notBlank(final String? value, [String message = DEFAULT_NOT_BLANK_EX_MESSAGE]) {
         Validate.notNull(value,message);
-        if ((value is String) == false || value.trim().isEmpty) {
+        if ((value is String) == false || value!.trim().isEmpty) {
             throw new ArgumentError(message);
         }
         return value;
